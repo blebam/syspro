@@ -14,13 +14,13 @@ int main(int argc, char *argv[]) {
 			number=1;
 			i=2;
 		}
+		line=1;
 
-		for(i=2; i<argc; i++) {
+		for(; i<argc; i++) {        //error part, gpt hint
 			if((fp=fopen(argv[i], "r"))==NULL) {
 				fprintf(stderr, "Error Open File\n");
 				continue;
 			}
-			line=1;
 			c=getc(fp);
 
 			if(number && c!=EOF)
@@ -30,10 +30,10 @@ int main(int argc, char *argv[]) {
 				putc(c,stdout);
 
 				if(c=='\n') {
+					line++;
 					c=getc(fp);
 
 					if(number && c!=EOF) {
-						line++;
 						printf("%4d ",line);
 					}
 				}
