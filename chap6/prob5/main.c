@@ -12,7 +12,7 @@ char type(mode_t);
 char *perm(mode_t);
 void printStat(char*, char*, struct stat*);
 
-int main(int argc(), *argv[]) {
+int main(int argc,char **argv) {
 	DIR *dp;
 	char *dir;
 	struct stat st;
@@ -40,7 +40,7 @@ void printStat(char *pathname, char *file, struct stat *st) {
 	printf("%5ld ", st->st_blocks);
 	printf("%c%s ", type(st->st_mode), perm(st->st_mode));
     printf("%3ld ", st->st_nlink);
-    printf("%s %s ", getpwuid(st->st_uid)->pw_name getgrgid(st->st_gid)->gr_name);
+    printf("%s %s ", getpwuid(st->st_uid)->pw_name, getgrgid(st->st_gid)->gr_name);
     printf("%9ld ", st->st_size);
     printf("%.12s ", ctime(&st->st_mtime)+4);
     printf("%s\n", file);
